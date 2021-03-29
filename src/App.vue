@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <Counter />
+    <Greeter />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Counter from './components/Counter.vue';
+import Greeter from './components/Greeter.vue';
 
 @Component({
   components: {
-    Counter,
+    Greeter,
   },
 })
 export default class App extends Vue {}
