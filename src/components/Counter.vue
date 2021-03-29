@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Hallo Seminarteilnehmer!</h2>
+    <h2>Hallo Seminarteilnehmer/in!</h2>
     <div>Es wurde {{ counter }} mal geklickt</div>
     <br />
     <button @click="count">click</button>
