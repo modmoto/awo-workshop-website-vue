@@ -1,10 +1,10 @@
 <template>
   <div>
     <h2>Hallo Seminarteilnehmer/in!</h2>
-    <div>
-      <input v-model="name">
-      <input v-model="message">
-      <button @click="sendGreeting">Gruß dalassen</button>
+    <div id="input-fields-wrapper">
+      <input class="input-fields" v-model="name" placeholder="Dein Name">
+      <input class="input-fields" v-model="message" placeholder="Trage deinen Gruß ein">
+      <div class="primary-button" @click="sendGreeting">Gruß dalassen</div>
     </div>
     <h3>Grüße von:</h3>
     <div v-for="g in greetings" :key="g.greeting" >
@@ -58,17 +58,45 @@ export default class Greeter extends Vue {
 </script>
 
 <style scoped>
+#input-fields-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.primary-button {
+  cursor: pointer;
+  padding: 5px;
+  margin: 15px;
+  background: #42b983;
+  color: white;
+  border: 2px solid #2c3e50;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.input-fields {
+  padding: 5px;
+  margin: 5px;
+  border-radius: 4px;
+  border: 2px solid #2c3e50;
+  width: 200px;
+}
+
 h3 {
   margin: 40px 0 0;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }
