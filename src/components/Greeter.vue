@@ -15,6 +15,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import axios from 'axios';
 
 @Component
 export default class Greeter extends Vue {
@@ -31,31 +32,22 @@ export default class Greeter extends Vue {
           greeting: this.message
       });
 
-      const response = await fetch(this.greetingsPoint, {
-        method: "POST",
-        body: data,
-        mode: 'no-cors',
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
+      const response = await axios.post(this.greetingsPoint, {
+          user: this.name,
+          greeting: this.message
       });
 
-      if (response.ok) {
-        const greetings = await response.json();
-        this.greetings = greetings;
+      if (response.data) {
+        this.greetings = response.data;
       }
     }
   }
 
   async created() {
-    const response = await fetch(this.greetingsPoint, { 
-      method: 'GET'
-    });
+    const response = await axios.get(this.greetingsPoint);
       
-    if (response.ok) {
-      const greetings = await response.json();
-      this.greetings = greetings;
+    if (response.data) {
+      this.greetings = response.data;
     }
   }
 }
