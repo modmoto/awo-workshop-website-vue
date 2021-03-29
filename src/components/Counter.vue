@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Hallo Workshop</h2>
-    <div>Es wurde {{ counter }} mal gecklickt</div>
+    <div>Es wurde {{ counter }} mal geklickt</div>
     <br />
     <button @click="count">click</button>
   </div>
