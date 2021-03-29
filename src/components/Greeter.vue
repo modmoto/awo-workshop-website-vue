@@ -26,21 +26,22 @@ export default class Greeter extends Vue {
 
   public async sendGreeting() {
     if (this.name && this.message) {
-      const body = JSON.stringify({
+      const data = JSON.stringify({
           user: this.name,
           greeting: this.message
       });
-      
+
       const response = await fetch(this.greetingsPoint, {
-        method: 'POST',
+        method: "POST",
+        body: data,
         mode: 'no-cors',
         headers: {
-          'Content-Type': 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        body: body
       });
 
-      if (response.status === 200) {
+      if (response.ok) {
         const greetings = await response.json();
         this.greetings = greetings;
       }
@@ -52,7 +53,7 @@ export default class Greeter extends Vue {
       method: 'GET'
     });
       
-    if (response.status === 200) {
+    if (response.ok) {
       const greetings = await response.json();
       this.greetings = greetings;
     }
