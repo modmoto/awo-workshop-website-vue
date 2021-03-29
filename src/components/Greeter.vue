@@ -1,14 +1,14 @@
 <template>
   <div>
     <h2>Hallo Seminarteilnehmer/in!</h2>
-    <h3>Gruß abschicken</h3>
-    <input type="text" :v-model="name"/>
-    <input type="text" :v-model="message"/>
-    <button type="text" @click="sendGreeting">Gruß dalassen</button>
+    <input v-model="name">
+    <input v-model="message">
+    <button @click="sendGreeting">Gruß dalassen</button>
     <h3>Grüße von:</h3>
     <div v-for="g in greetings" :key="g.greeting" >
       <div>{{ g.user }}:</div>
       <div>{{ g.greeting }}</div>
+      <br />
     </div>
   </div>
 </template>
@@ -19,6 +19,7 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component
 export default class Greeter extends Vue {
   private greetingsPoint = 'https://simon-guesbook-backend.herokuapp.com/greetings';
+  // private greetingsPoint = 'http://localhost:5000/greetings';
   public greetings = [];
   public name = '';
   public message = '';
@@ -32,6 +33,10 @@ export default class Greeter extends Vue {
       
       const response = await fetch(this.greetingsPoint, {
         method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: body
       });
 
