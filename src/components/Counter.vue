@@ -1,9 +1,12 @@
 <template>
   <div>
     <h2>Hallo Seminarteilnehmer/in!</h2>
-    <div>Es wurde {{ counter }} mal geklickt</div>
     <br />
-    <button @click="count">click</button>
+    <h3>Grüße von:</h3>
+    <div v-for="g in greetings" :key="g.greeting" >
+      <div>{{ g.user }}:</div>
+      <div>{{ g.greeting }}</div>
+    </div>
   </div>
 </template>
 
@@ -12,10 +15,10 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Counter extends Vue {
-  public counter = 0;
+  public greetings = [];
 
-  public count(): void {
-    this.counter = this.counter + 1;
+  async created() {
+    const response = await fetch('');
   }
 }
 </script>
