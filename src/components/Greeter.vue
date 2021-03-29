@@ -1,9 +1,11 @@
 <template>
   <div>
     <h2>Hallo Seminarteilnehmer/in!</h2>
-    <input v-model="name">
-    <input v-model="message">
-    <button @click="sendGreeting">Gruß dalassen</button>
+    <div>
+      <input v-model="name">
+      <input v-model="message">
+      <button @click="sendGreeting">Gruß dalassen</button>
+    </div>
     <h3>Grüße von:</h3>
     <div v-for="g in greetings" :key="g.greeting" >
       <div>{{ g.user }}:</div>
@@ -39,6 +41,8 @@ export default class Greeter extends Vue {
 
       if (response.data) {
         this.greetings = response.data;
+        this.name = '';
+        this.message = '';
       }
     }
   }
