@@ -4,13 +4,16 @@
     <div id="input-fields-wrapper">
       <input class="input-fields" v-model="name" placeholder="Dein Name">
       <input class="input-fields" v-model="message" placeholder="Trage deinen Gruß ein">
-      <div class="primary-button" @click="sendGreeting">Gruß dalassen</div>
+      <div  @click="sendGreeting" class="primary-button">Gruß dalassen</div>
+      <input @change="(e) => onSelectImage(e)" type="file" accept="image/*">
+      <div v-if="imageError">Bild zu groß!</div>
+      <img v-if="uploadedImage" :src="uploadedImage" class="uploaded-image"/>
     </div>
     <h3>Grüße von:</h3>
     <div id="greeting-list">
       <div class="grettings-wrapper" v-for="g in greetings" :key="g.id" >
         <div class="greeter-header">
-          <img src="https://img.icons8.com/metro/26/000000/trash.png" class="greeter-delete" @click="() => deleteGreeting(g)"/>
+          <img @click="() => deleteGreeting(g)" src="https://img.icons8.com/metro/26/000000/trash.png" class="greeter-delete" />
         </div>
         <img v-if="g.image" :src="g.image" />
         <div class="message-panel"> 
@@ -40,14 +43,15 @@ export default class Greeter extends Vue {
   public greetings = [];
   public name = '';
   public message = '';
-  public image = `data:image/jpg;base64,R0lGODdhEAAQAMwAAPj7+FmhUYjNfGuxYYDJdYTIeanOpT+DOTuANXi/bGOrWj6CONzv2sPjv2CmV1unU4zPgI/Sg6DJnJ3ImTh8Mtbs00aNP1CZSGy0YqLEn47RgXW8amasW7XWsmmvX2iuXiwAAAAAEAAQAAAFVyAgjmRpnihqGCkpDQPbGkNUOFk6DZqgHCNGg2T4QAQBoIiRSAwBE4VA4FACKgkB5NGReASFZEmxsQ0whPDi9BiACYQAInXhwOUtgCUQoORFCGt/g4QAIQA7`
+  public uploadedImage = '';
+  public imageError = false;
 
   public async sendGreeting() {
     if (this.name && this.message) {
       const response = await axios.post(this.greetingsPoint, {
           user: this.name,
           greeting: this.message,
-          image: this.image
+          image: this.uploadedImage
       });
 
       if (response.data) {
@@ -56,6 +60,25 @@ export default class Greeter extends Vue {
         this.message = '';
       }
     }
+  }
+
+  public onSelectImage(event: any) {
+    this.imageError = false
+    this.uploadedImage = '';
+    const firstFile = event.target.files[0];
+    if (firstFile) {
+      if (firstFile.size > 36537) {
+        this.imageError = true
+        return;
+      }
+      const FR = new FileReader();
+      FR.addEventListener("load", e => this.setFile(e.target?.result)); 
+      FR.readAsDataURL(firstFile);
+    }
+  }
+
+  public setFile(f: any) {
+    this.uploadedImage = f;
   }
 
   public async deleteGreeting(g: Greeting) {
@@ -95,6 +118,11 @@ export default class Greeter extends Vue {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.uploaded-image {
+  width:100%;
+  max-width:300px;
 }
 
 .user-name {
