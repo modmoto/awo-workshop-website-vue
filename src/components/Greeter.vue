@@ -7,9 +7,13 @@
       <div class="primary-button" @click="sendGreeting">Gruß dalassen</div>
     </div>
     <h3>Grüße von:</h3>
-    <div v-for="g in greetings" :key="g.greeting" >
+    <div v-for="g in greetings" :key="g.id" >
       <div>{{ g.user }}:</div>
       <div>{{ g.greeting }}</div>
+      <div>{{ g.likes }}</div>
+      <img v-if="g.image" :src="g.image" />
+      <button @click="() => deleteGreeting(g)">delete</button>
+      <button @click="() => likeGreeting(g)">like</button>
       <br />
     </div>
   </div>
@@ -18,6 +22,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import axios from 'axios';
+import { Greeting } from './types';
 
 @Component
 export default class Greeter extends Vue {
@@ -26,12 +31,14 @@ export default class Greeter extends Vue {
   public greetings = [];
   public name = '';
   public message = '';
+  public image = `data:image/jpg;base64,R0lGODdhEAAQAMwAAPj7+FmhUYjNfGuxYYDJdYTIeanOpT+DOTuANXi/bGOrWj6CONzv2sPjv2CmV1unU4zPgI/Sg6DJnJ3ImTh8Mtbs00aNP1CZSGy0YqLEn47RgXW8amasW7XWsmmvX2iuXiwAAAAAEAAQAAAFVyAgjmRpnihqGCkpDQPbGkNUOFk6DZqgHCNGg2T4QAQBoIiRSAwBE4VA4FACKgkB5NGReASFZEmxsQ0whPDi9BiACYQAInXhwOUtgCUQoORFCGt/g4QAIQA7`
 
   public async sendGreeting() {
     if (this.name && this.message) {
       const response = await axios.post(this.greetingsPoint, {
           user: this.name,
-          greeting: this.message
+          greeting: this.message,
+          image: this.image
       });
 
       if (response.data) {
@@ -39,6 +46,22 @@ export default class Greeter extends Vue {
         this.name = '';
         this.message = '';
       }
+    }
+  }
+
+  public async deleteGreeting(g: Greeting) {
+    const response = await axios.delete(`${this.greetingsPoint}/${g.id}`);
+    
+    if (response.data) {
+      this.greetings = response.data;
+    }
+  }
+
+   public async likeGreeting(g: Greeting) {
+    const response = await axios.put(`${this.greetingsPoint}/${g.id}`);
+    
+    if (response.data) {
+      this.greetings = response.data;
     }
   }
 
