@@ -48,12 +48,13 @@ export default class Greeter extends Vue {
 
   public async sendGreeting() {
     if (this.name && this.message) {
+      const imageTemp = this.uploadedImage
       this.uploadedImage = ''
 
       const response = await axios.post(this.greetingsPoint, {
           user: this.name,
           greeting: this.message,
-          image: this.uploadedImage
+          image: imageTemp
       });
 
       if (response.data) {
