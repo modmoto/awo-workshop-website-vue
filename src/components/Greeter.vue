@@ -5,9 +5,9 @@
       <input class="input-fields" v-model="name" placeholder="Dein Name">
       <input class="input-fields" v-model="message" placeholder="Trage deinen Gruß ein">
       <div  @click="sendGreeting" class="primary-button">Gruß dalassen</div>
-      <input @change="(e) => onSelectImage(e)" type="file" accept="image/*">
-      <div v-if="imageError">Bild zu groß!</div>
       <img v-if="uploadedImage" :src="uploadedImage" class="uploaded-image"/>
+      <input @change="(e) => onSelectImage(e)" class="image-select" type="file" accept="image/*">
+      <div v-if="imageError">Bild zu groß!</div>
     </div>
     <h3>Grüße von:</h3>
     <div id="greeting-list">
@@ -123,6 +123,11 @@ export default class Greeter extends Vue {
 .uploaded-image {
   width:100%;
   max-width:300px;
+}
+
+.image-select {
+  margin: 20px;
+  padding-left: 4%;
 }
 
 .user-name {
