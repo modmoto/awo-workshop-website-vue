@@ -15,7 +15,7 @@
         <div class="greeter-header">
           <img @click="() => deleteGreeting(g)" src="https://img.icons8.com/metro/26/000000/trash.png" class="greeter-delete" />
         </div>
-        <img v-if="g.image" :src="g.image" />
+        <img v-if="g.image" :src="g.image" class="image-of-post" />
         <div class="message-panel"> 
           <div class="message-and-user"> 
             <div class="user-name">{{ g.user }}:</div>
@@ -120,6 +120,16 @@ export default class Greeter extends Vue {
   flex-direction: column;
 }
 
+.image-of-post {
+  padding: 8px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.message-panel {
+  background-color: rgb(250, 250, 250);
+  border-radius: 0 0 4px 4px;
+}
+
 .uploaded-image {
   width:100%;
   max-width:300px;
@@ -162,9 +172,10 @@ export default class Greeter extends Vue {
 .greeter-header {
   display: flex;
   border-radius: 4px 4px 0 0;
-  background-color: rgb(240, 235, 235);
+  background-color: rgb(250, 250, 250);
   justify-content: flex-end;
   padding: 10px;
+  border-bottom: 1px solid lightgrey;
 }
 
 .grettings-wrapper {
