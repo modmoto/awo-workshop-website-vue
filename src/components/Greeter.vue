@@ -9,12 +9,20 @@
     <h3>Grüße von:</h3>
     <div id="greeting-list">
       <div class="grettings-wrapper" v-for="g in greetings" :key="g.id" >
-        <div>{{ g.user }}:</div>
-        <div>{{ g.greeting }}</div>
-        <div>{{ g.likes }}</div>
+        <div class="greeter-header">
+          <img src="https://img.icons8.com/metro/26/000000/trash.png" class="greeter-delete" @click="() => deleteGreeting(g)"/>
+        </div>
         <img v-if="g.image" :src="g.image" />
-        <div @click="() => deleteGreeting(g)">delete</div>
-        <div @click="() => likeGreeting(g)">like</div>
+        <div class="message-panel"> 
+          <div class="message-and-user"> 
+            <div class="user-name">{{ g.user }}:</div>
+            <div class="user-message">{{ g.greeting }}</div>
+          </div>
+          <div class="likes-wrapper">
+            <img @click="() => likeGreeting(g)" class="greeting-like-button" src="https://img.icons8.com/material/24/000000/facebook-like--v1.png"/>
+            <div class="greeting-like-amount">{{ g.likes }}</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -89,11 +97,48 @@ export default class Greeter extends Vue {
   flex-direction: column;
 }
 
+.user-name {
+  font-size: 0.8em;
+  margin-bottom: 12px;
+}
+
+.message-and-user {
+  float: left;
+  padding: 12px;
+}
+
+.likes-wrapper {
+  float: right;
+  display: flex;
+  padding: 12px;
+}
+
+.greeting-like-amount {
+  line-height: 26px;
+}
+
+.greeting-like-button{
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.greeter-delete {
+  cursor: pointer;
+}
+
+.greeter-header {
+  display: flex;
+  border-radius: 4px 4px 0 0;
+  background-color: rgb(240, 235, 235);
+  justify-content: flex-end;
+  padding: 10px;
+}
+
 .grettings-wrapper {
   width: 400px;
   margin: 15px;
   border: 1px solid gray;
-  border-radius: 3px;
+  border-radius: 4px;
   display: flex;
   justify-content: center;
   flex-direction: column;
