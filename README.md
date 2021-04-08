@@ -19,7 +19,6 @@ npm run serve
 ```
 
 sobald du grüne Schrift siehst, kannst du deinen Browser öffnen und auf http://localhost:8080/ deine webseite sehen. Du kannst auch einfach den Link hinter "Local:" mit strg + click öffnen. 
-![VSCode](terminalok.JPG)
 
 
 Sobald du den Code in VS änderst und dateien speicherst, sollte sich die Webseite automatisch neuladen und du kannst deine Änderungen sofort sehen.
