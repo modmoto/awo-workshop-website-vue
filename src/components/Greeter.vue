@@ -29,11 +29,6 @@ export default class Greeter extends Vue {
 
   public async sendGreeting() {
     if (this.name && this.message) {
-      const data = JSON.stringify({
-          user: this.name,
-          greeting: this.message
-      });
-
       const response = await axios.post(this.greetingsPoint, {
           user: this.name,
           greeting: this.message
