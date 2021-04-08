@@ -7,14 +7,15 @@
       <div class="primary-button" @click="sendGreeting">Gruß dalassen</div>
     </div>
     <h3>Grüße von:</h3>
-    <div v-for="g in greetings" :key="g.id" >
-      <div>{{ g.user }}:</div>
-      <div>{{ g.greeting }}</div>
-      <div>{{ g.likes }}</div>
-      <img v-if="g.image" :src="g.image" />
-      <button @click="() => deleteGreeting(g)">delete</button>
-      <button @click="() => likeGreeting(g)">like</button>
-      <br />
+    <div id="greeting-list">
+      <div class="grettings-wrapper" v-for="g in greetings" :key="g.id" >
+        <div>{{ g.user }}:</div>
+        <div>{{ g.greeting }}</div>
+        <div>{{ g.likes }}</div>
+        <img v-if="g.image" :src="g.image" />
+        <div @click="() => deleteGreeting(g)">delete</div>
+        <div @click="() => likeGreeting(g)">like</div>
+      </div>
     </div>
   </div>
 </template>
@@ -82,6 +83,22 @@ export default class Greeter extends Vue {
   align-items: center;
 }
 
+#greeting-list {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.grettings-wrapper {
+  width: 400px;
+  margin: 15px;
+  border: 1px solid gray;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .primary-button {
   cursor: pointer;
   padding: 5px;
@@ -103,16 +120,6 @@ export default class Greeter extends Vue {
 
 h3 {
   margin: 40px 0 0;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
 }
 
 a {
