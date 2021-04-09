@@ -13,7 +13,7 @@ export default class App extends Vue {
   counter = 0;
 
   countUp() {
-    this.counter++;
+    this.counter = this.counter + 1;
   }
 }
 
