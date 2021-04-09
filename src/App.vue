@@ -13,7 +13,6 @@ export default class App extends Vue {
   counter = 0;
 
   countUp() {
-    console.log('clicked')
     this.counter++;
   }
 }
