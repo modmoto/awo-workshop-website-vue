@@ -1,5 +1,5 @@
 <template>
-  <div @click="countUp()" class="hallo-welt">
+  <div class="hallo-welt" @click="countUp()" >
     Hallo zusammen, es wurde {{ counter }} mal geklickt.
   </div>
 </template>
