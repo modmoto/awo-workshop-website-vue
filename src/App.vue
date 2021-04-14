@@ -1,10 +1,10 @@
 <template>
-  <div class="counter-area" @click="countUp()" >
+  <div class="hallo-welt" @click="countUp()" >
     Hallo zusammen, es wurde {{ counter }} mal geklickt.
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
@@ -20,7 +20,7 @@ export default class App extends Vue {
 </script>
 
 <style scoped>
-  .counter-area {
+  .hallo-welt {
     background-color: aqua;
     text-align: center;
     padding: 10px;
