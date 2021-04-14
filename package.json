@@ -20,17 +20,8 @@
     "vue-property-decorator": "9.1.2"
   },
   "devDependencies": {
-    "@types/axios": "0.14.0",
-    "@typescript-eslint/eslint-plugin": "4.22.0",
-    "@typescript-eslint/parser": "4.22.0",
     "@vue/cli-plugin-babel": "4.5.12",
-    "@vue/cli-plugin-eslint": "4.5.12",
-    "@vue/cli-plugin-typescript": "4.5.12",
     "@vue/cli-service": "4.5.12",
-    "@vue/eslint-config-typescript": "7.0.0",
-    "eslint": "7.24.0",
-    "eslint-plugin-vue": "7.9.0",
-    "typescript": "4.2.4",
     "vue-template-compiler": "2.6.12"
   },
   "eslintConfig": {
