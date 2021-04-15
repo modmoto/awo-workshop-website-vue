@@ -11,7 +11,7 @@
     </div>
     <h3>Grüße von:</h3>
     <div id="greeting-list">
-      <div class="grettings-wrapper" v-for="g in greetings" :key="g._id" >
+      <div class="grettings-wrapper" v-for="g in greetings" :key="g.id" >
         <div class="greeter-header">
           <img @click="() => deleteGreeting(g)" src="https://img.icons8.com/metro/26/000000/trash.png" class="greeter-delete" />
         </div>
@@ -85,7 +85,7 @@ export default class Greeter extends Vue {
   }
 
   public async deleteGreeting(g: Greeting) {
-    const response = await axios.delete(`${this.greetingsPoint}/${g._id}`);
+    const response = await axios.delete(`${this.greetingsPoint}/${g.id}`);
     
     if (response.data) {
       this.greetings = response.data;
@@ -93,7 +93,7 @@ export default class Greeter extends Vue {
   }
 
    public async likeGreeting(g: Greeting) {
-    const response = await axios.put(`${this.greetingsPoint}/${g._id}`);
+    const response = await axios.put(`${this.greetingsPoint}/${g.id}`);
     
     if (response.data) {
       this.greetings = response.data;

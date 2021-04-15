@@ -1,12 +1,12 @@
 export class Greeting {
-    _id;
+    id;
     greeting;
     user;
     image;
     likes;
 
-    constructor(_id: string, greeting: string, user: string, image: string, likes: number) {
-        this._id = _id;
+    constructor(id: string, greeting: string, user: string, image: string, likes: number) {
+        this.id = id;
         this.greeting = greeting;
         this.user = user;
         this.image = image;
