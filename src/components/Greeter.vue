@@ -38,7 +38,7 @@ import { Greeting } from './types';
 
 @Component
 export default class Greeter extends Vue {
-  private greetingsPoint = 'https://simon-guesbook-backend.herokuapp.com/greetings';
+  private greetingsPoint = 'https://simon-guesbook-backend.herokuapp.com/greetings/simon';
   // private greetingsPoint = 'http://localhost:5000/greetings';
   public greetings = [];
   public name = '';
